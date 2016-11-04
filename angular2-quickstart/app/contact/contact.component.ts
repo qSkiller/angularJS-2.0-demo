@@ -45,7 +45,7 @@ export class ContactComponent implements OnInit {
             }
 
             sayName() {
-                console.log(`My name is ` + this.name);
+                console.log(`My name is ${this.name}`);
             }
         }
 
