@@ -1,0 +1,44 @@
+.ng-valid[required] {
+    border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid {
+    border-left: 5px solid #a94442; /* red */
+}
+
+.alert {
+    padding: 15px;
+    margin: 8px 0;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.msg {
+    color: blue;
+    background-color: whitesmoke;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.contacts li {
+    position: relative;
+    left: 0;
+    background-color: #EEE;
+    margin: .5em;
+    padding: .3em 0;
+    height: 1.6em;
+    border-radius: 4px;
+    list-style-type:none;
+}
+
+.contacts li:hover {
+    color: #607D8B;
+    background-color: #DDD;
+    left: .1em;
+}
