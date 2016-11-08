@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Basic Request</h2>
+            <button type="button" class="btn btn-default" (click)="makeRequest()">
+                Make Request
+            </button>
+            <div *ngIf="loading">
+                loading...
+            </div>
+            <pre *ngIf="dataShow">
+                {{data | json}}
+            </pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Todo list requests API</h2>
+        </div>
+        <div class="col-md-12">
+            <input type="text" placeholder="please enter keyword...">
+            <button type="button" class="btn btn-primary" (click)="show()">Search</button>
+        </div>
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped" *ngIf="data">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User ID</th>
+                            <th>Title</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tr *ngFor="let item of data">
+                        <td>{{item.id}}</td>
+                        <td>{{item.userId}}</td>
+                        <td>{{item.title}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary glyphicon glyphicon-plus" (click)="addArticle(item)"></button>
+                            <button type="button" class="btn btn-primary glyphicon glyphicon-pencil" (click)="putArticle(item)"></button>
+                            <button type="button" class="btn btn-danger glyphicon glyphicon-remove" (click)="deleteArticle(item)"></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

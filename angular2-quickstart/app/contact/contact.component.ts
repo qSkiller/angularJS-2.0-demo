@@ -2,14 +2,14 @@ import {Component, OnInit} from '@angular/core';
 
 import {Contact, ContactService} from  './contact.service';
 import {UserService} from '../user.service';
-import {stringifyElement} from "@angular/platform-browser/testing/browser_util";
+//import {stringifyElement} from "@angular/platform-browser/testing/browser_util";
 
 
 @Component({
     moduleId: module.id,
     selector: 'app-contact',
-    templateUrl: 'contact.component.html',
-    styleUrls: ['contact.component.css']
+    templateUrl: './contact.component.html',
+    styleUrls: ['./contact.component.css']
 })
 
 export class ContactComponent implements OnInit {
