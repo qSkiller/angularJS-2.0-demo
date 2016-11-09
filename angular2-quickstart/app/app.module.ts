@@ -16,8 +16,8 @@ import {SimpleHTTPService} from './simpleHttp/simpleHTTP.service';
 
 @NgModule({
     imports: [BrowserModule, FormsModule, HttpModule],
-    declarations: [AppComponent, HighlightDirective, AwesomePipe, ContactComponent,SimpleHTTPComponent],
-    providers:[ContactService, UserService, SimpleHTTPService],
+    declarations: [AppComponent, HighlightDirective, AwesomePipe, ContactComponent, SimpleHTTPComponent],
+    providers: [ContactService, UserService, SimpleHTTPService],
     bootstrap: [AppComponent]
 })
 

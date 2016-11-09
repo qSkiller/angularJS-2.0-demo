@@ -1,5 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Http, Response, Headers} from '@angular/http';
+
+import {Article} from './simpleHTTP.service'
 
 @Component({
     moduleId: module.id,
@@ -12,6 +14,11 @@ export class SimpleHTTPComponent implements OnInit {
     data: Object;
     loading: boolean;
     dataShow: boolean;
+    article: Article;
+    id: number;
+    title: string;
+    body: string;
+
     private headers = new Headers({'Content-Type': 'application/json'});
 
     constructor(public http: Http) {
@@ -39,33 +46,59 @@ export class SimpleHTTPComponent implements OnInit {
             );
     }
 
-    deleteArticle(item) {
-        this.http.delete('http://jsonplaceholder.typicode.com/posts/' + item.id, {headers: this.headers})
-            .toPromise()
-            .then(
-                this.ngOnInit()
-            );
+    searchArticle(){
+        this.http.request('http://jsonplaceholder.typicode.com/posts')
+            .subscribe((res: Response) => {
+                this.dataShow = false;
+                //this.data = res.json().filter(article=> article.title);
+                //user.lastName.toLowerCase().indexOf(keyword) === -1 )
+
+            });
     }
 
-    putArticle(item) {
-        this.http.put('http://jsonplaceholder.typicode.com/posts/', JSON.stringify(item), {headers: this.headers})
+    deleteArticle() {
+        this.http.delete('http://jsonplaceholder.typicode.com/posts/' + this.article.id, {headers: this.headers})
+            .subscribe(() =>{
+                this.ngOnInit();
+                $(".article-modal-delete").modal("hide");
+            });
+    }
+
+    putArticle() {
+        this.http.put('http://jsonplaceholder.typicode.com/posts/', JSON.stringify(this.article), {headers: this.headers})
             .subscribe((res: Response)=> {
                 this.dataShow = false;
                 this.data = res.json();
                 console.log(res.json());
+                $(".article-modal-edit").modal("hide");
             });
     }
 
-    addArticle(item) {
-        this.http.post('http://jsonplaceholder.typicode.com/posts/', JSON.stringify(item), {headers: this.headers})
-            .toPromise()
-            .then(
-                this.ngOnInit()
-            );
+    addArticle() {
+        let article = { id: this.id, title: this.title, body:this.body };
+
+        this.http.post('http://jsonplaceholder.typicode.com/posts/', JSON.stringify(article), {headers: this.headers})
+            .subscribe(() =>{
+                this.ngOnInit();
+                $(".article-modal").modal("hide");
+            });
     }
 
-    openModal() {
-
+    showArticleModal(item) {
+        if (item) {
+            this.article = item;
+            $(".article-modal-edit").modal("show");
+        }
+        else
+        {
+            $(".article-modal").modal("show");
+        }
     }
 
+    showDeleteModal(item) {
+        if (item) {
+            $(".article-modal-delete").modal("show");
+            this.article = item;
+        }
+    }
 }
