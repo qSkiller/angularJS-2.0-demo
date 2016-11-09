@@ -18,7 +18,6 @@ export class SimpleHTTPComponent implements OnInit {
     id: number;
     title: string;
     body: string;
-
     private headers = new Headers({'Content-Type': 'application/json'});
 
     constructor(public http: Http) {
@@ -57,7 +56,7 @@ export class SimpleHTTPComponent implements OnInit {
     }
 
     deleteArticle() {
-        this.http.delete('http://jsonplaceholder.typicode.com/posts/' + this.article.id, {headers: this.headers})
+        this.http.delete('http://jsonplaceholder.typicode.com/posts/'+this.article.id, {headers: this.headers})
             .subscribe(() =>{
                 this.ngOnInit();
                 $(".article-modal-delete").modal("hide");
@@ -65,7 +64,7 @@ export class SimpleHTTPComponent implements OnInit {
     }
 
     putArticle() {
-        this.http.put('http://jsonplaceholder.typicode.com/posts/', JSON.stringify(this.article), {headers: this.headers})
+        this.http.put('http://jsonplaceholder.typicode.com/posts/'+this.article.id, JSON.stringify(this.article), {headers: this.headers})
             .subscribe((res: Response)=> {
                 this.dataShow = false;
                 this.data = res.json();
