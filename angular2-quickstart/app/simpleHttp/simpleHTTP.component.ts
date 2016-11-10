@@ -53,11 +53,15 @@ export class SimpleHTTPComponent implements OnInit {
             .subscribe((res: Response) => {
                 this.dataShow = false;
                 let articlesData=[];
-                for(let article of res.json()){
-                    if(article.title.toLowerCase().indexOf(this.keyword.toLowerCase())>0)
-                    {
-                        articlesData.push(article);
+                if(this.keyword){
+                    for(let article of res.json()){
+                        if(article.title.toLowerCase().indexOf(this.keyword.toLowerCase())>0)
+                        {
+                            articlesData.push(article);
+                        }
                     }
+                }else {
+                    articlesData=res.json();
                 }
 
                 this.data=articlesData;
