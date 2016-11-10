@@ -17,14 +17,19 @@
         <div class="col-md-12">
             <h2>Todo list requests API</h2>
         </div>
-        <div class="col-md-12">
-            <input type="text" placeholder="please enter keyword...">
-            <button type="button" class="btn btn-primary" (click)="show()">Search</button>
-
-            <!-- Large modal -->
-            <button type="button" class="btn btn-primary pull-right"
-                    (click)="showArticleModal()">Create
-            </button>
+        <div class="col-md-12 search-article-box">
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="articleKeyword" #articleKeyword="ngModel"
+                       [(ngModel)]="keyword" placeholder="please enter title...">
+            </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-primary" (click)="searchArticle()">Search</button>
+            </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-primary pull-right"
+                        (click)="showArticleModal()">Create
+                </button>
+            </div>
         </div>
         <div class="col-md-12">
             <div class="table-responsive">
@@ -61,15 +66,18 @@
                             <form #articleForm="ngForm">
                                 <div class="form-group">
                                     <label>ID</label>
-                                    <input type="text" class="form-control" name="articleId" #articleId="ngModel" [(ngModel)]="id" placeholder="Input id">
+                                    <input type="text" class="form-control" name="articleId" #articleId="ngModel"
+                                           [(ngModel)]="id" placeholder="Input id">
                                 </div>
                                 <div class="form-group">
                                     <label>Title</label>
-                                    <input type="text" class="form-control" name="articleTitle" #articleTitle="ngModel" [(ngModel)]="title" placeholder="title">
+                                    <input type="text" class="form-control" name="articleTitle" #articleTitle="ngModel"
+                                           [(ngModel)]="title" placeholder="title">
                                 </div>
                                 <div class="form-group">
                                     <label>Body</label>
-                                    <input type="text" class="form-control" name="articleBody" #articleBody="ngModel" [(ngModel)]="body" placeholder="body">
+                                    <input type="text" class="form-control" name="articleBody" #articleBody="ngModel"
+                                           [(ngModel)]="body" placeholder="body">
                                 </div>
                             </form>
                         </div>
@@ -92,15 +100,18 @@
                             <form>
                                 <div class="form-group">
                                     <label>ID</label>
-                                    <input type="text" class="form-control" name="articleId" #articleId="ngModel" [(ngModel)]="article.id" placeholder="Input id">
+                                    <input type="text" class="form-control" name="articleId" #articleId="ngModel"
+                                           [(ngModel)]="article.id" placeholder="Input id">
                                 </div>
                                 <div class="form-group">
                                     <label>Title</label>
-                                    <input type="text" class="form-control" name="articleTitle" #articleTitle="ngModel" [(ngModel)]="article.title" placeholder="title">
+                                    <input type="text" class="form-control" name="articleTitle" #articleTitle="ngModel"
+                                           [(ngModel)]="article.title" placeholder="title">
                                 </div>
                                 <div class="form-group">
                                     <label>Body</label>
-                                    <input type="text" class="form-control" name="articleBody" #articleBody="ngModel" [(ngModel)]="article.body" placeholder="body">
+                                    <input type="text" class="form-control" name="articleBody" #articleBody="ngModel"
+                                           [(ngModel)]="article.body" placeholder="body">
                                 </div>
                             </form>
                         </div>

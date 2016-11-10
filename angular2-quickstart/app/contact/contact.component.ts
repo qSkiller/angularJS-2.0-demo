@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {Contact, ContactService} from  './contact.service';
 import {UserService} from '../user.service';
+declare var module: {id: string};
 //import {stringifyElement} from "@angular/platform-browser/testing/browser_util";
 
 
