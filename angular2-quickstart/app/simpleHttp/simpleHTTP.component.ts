@@ -22,13 +22,26 @@ export class SimpleHTTPComponent implements OnInit {
     body: string;
     keyword:string;
     private headers = new Headers({'Content-Type': 'application/json'});
+    private baseUrl='http://jsonplaceholder.typicode.com';
 
     constructor(public http: Http) {
 
     }
 
     ngOnInit() {
-        this.http.request('http://jsonplaceholder.typicode.com/posts')
+        var jsonStr = '{"name":"leinov","sex":"famle","address":"beijing"}';
+        var jsonObj=JSON.parse(jsonStr);
+        console.log(typeof jsonObj);
+        console.log(jsonObj);
+
+        var student = new Article(1,1,'leinov','famle');
+        var jsonStudent=JSON.stringify(student);
+        console.log(typeof jsonStudent);
+        console.log(jsonStudent);
+
+
+
+        this.http.request(`${this.baseUrl}/posts`)
             .subscribe((res: Response) => {
                 this.dataShow = false;
                 this.data = res.json();
@@ -38,7 +51,7 @@ export class SimpleHTTPComponent implements OnInit {
 
     makeRequest() {
         this.loading = true;
-        this.http.request('http://jsonplaceholder.typicode.com/posts')
+        this.http.request(`${this.baseUrl}/posts`)
             .subscribe((res: Response) => {
                     this.loading = false;
                     this.dataShow = true;
@@ -49,7 +62,7 @@ export class SimpleHTTPComponent implements OnInit {
     }
 
     searchArticle() {
-        this.http.request('http://jsonplaceholder.typicode.com/posts')
+        this.http.request(`${this.baseUrl}/posts`)
             .subscribe((res: Response) => {
                 this.dataShow = false;
                 let articlesData=[];
@@ -69,7 +82,7 @@ export class SimpleHTTPComponent implements OnInit {
     }
 
     deleteArticle() {
-        this.http.delete('http://jsonplaceholder.typicode.com/posts/' + this.article.id, {headers: this.headers})
+        this.http.delete(`${this.baseUrl}/posts` + this.article.id, {headers: this.headers})
             .subscribe(() => {
                 this.ngOnInit();
                 $(".article-modal-delete").modal("hide");
@@ -77,7 +90,7 @@ export class SimpleHTTPComponent implements OnInit {
     }
 
     putArticle() {
-        this.http.put('http://jsonplaceholder.typicode.com/posts/' + this.article.id, JSON.stringify(this.article), {headers: this.headers})
+        this.http.put(`${this.baseUrl}/posts` + this.article.id, JSON.stringify(this.article), {headers: this.headers})
             .subscribe((res: Response)=> {
                 this.dataShow = false;
                 this.data = res.json();
@@ -89,7 +102,7 @@ export class SimpleHTTPComponent implements OnInit {
     addArticle() {
         let article = {id: this.id, title: this.title, body: this.body};
 
-        this.http.post('http://jsonplaceholder.typicode.com/posts/', JSON.stringify(article), {headers: this.headers})
+        this.http.post(`${this.baseUrl}/posts`, JSON.stringify(article), {headers: this.headers})
             .subscribe(() => {
                 this.ngOnInit();
                 $(".article-modal").modal("hide");
